@@ -1,3 +1,5 @@
+@include('admin.includes.alerts')
+
 <div class="form-goup">
     <label >Nome:</label>
     <input type="text" name="name" class="form-control" placeholder="Nome:" value="{{   $plan->name ?? ''   }}">
@@ -14,5 +16,5 @@
 </div>
 
 <div class="form-group">
-    <button type="submit" class="btn btn-dark">Enviar</button>
+    <Label><button type="submit" class="btn btn-dark">Enviar</button></Label>
 </div>

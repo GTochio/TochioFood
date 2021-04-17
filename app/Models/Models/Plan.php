@@ -10,6 +10,12 @@ class Plan extends Model
     use HasFactory;
     protected $fillable = ['name', 'url', 'price', 'description'];
 
+    public function details()
+ {
+     return $this->hasMany(DetailPlans::class);
+ }
+    
+
     public function search($filter = null)
     {
         $results = $this
