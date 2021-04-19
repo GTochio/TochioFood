@@ -13,6 +13,10 @@ Route::prefix('admin')->group(function(){
 
     Route::post('plans/{url}/details',[App\Http\Controllers\Admin\DetailPlanController::class, 'store'])->name('details.plan.store');
     Route::get('plans/{url}/details/create',[App\Http\Controllers\Admin\DetailPlanController::class, 'create'])->name('details.plan.create');
+    Route::get('plans/{url}/details/{idPlan}/edit',[App\Http\Controllers\Admin\DetailPlanController::class, 'edit'])->name('details.plan.edit');
+    Route::delete('plans/{url}/details/{idPlan}',[App\Http\Controllers\Admin\DetailPlanController::class, 'destroy'])->name('details.plan.destroy');
+    Route::get('plans/{url}/details/{idPlan}',[App\Http\Controllers\Admin\DetailPlanController::class, 'show'])->name('details.plan.show');
+    Route::put('plans/{url}/details/{idPlan}',[App\Http\Controllers\Admin\DetailPlanController::class, 'update'])->name('details.plan.update');
     Route::get('plans/{url}/details',[App\Http\Controllers\Admin\DetailPlanController::class, 'index'])->name('details.plan.index');
 
 // Routes Plans

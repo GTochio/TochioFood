@@ -1,10 +1,12 @@
+@include('admin.includes.alerts')
+
 @csrf
 
-<div class="form-control">
-    <label >Nome:</label>
-    <input type="text" name="name" placeholder="nome" class="form-control">
+<div class="form-group">
+    <label >Nome:</label>   
+    <input type="text" name="name" placeholder="Nome" class="form-control" value="{{$detail->name ?? old('')}}">
 </div>
 
-<div class="form-control">
+<div class="form-group">
     <button type="submit" class="btn btn-info"> Enviar </button>
 </div>

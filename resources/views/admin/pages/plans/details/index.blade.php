@@ -12,7 +12,7 @@
         
     </ol>
 
-    <h1>Detalhes do Planos {{ $plan->name}} <a href="{{route('plans.create')}}"class="btn btn-dark"><i class="fas fa-plus-square"></i>ADD</a></h1>
+    <h1>Detalhes do Planos {{ $plan->name}} <a href="{{route('details.plan.create', $plan->url)}}"class="btn btn-dark"><i class="fas fa-plus-square"></i>ADD</a></h1>
 
 @stop
 
@@ -20,6 +20,7 @@
     <div class="card">
         
         <div class="card-body">
+            @include('admin.includes.alerts')
             <table class="table table-condensed">
                 <thead>
                     <tr>
@@ -34,8 +35,8 @@
                             {{  $detail->name   }}
                         </td>
                         <td style="width=10px;">
-                            <a href="{{ route('plans.edit', $plan->url)}}" class="btn btn-info">EDIT</a>
-                            <a href="{{ route('plans.show', $plan->url)}}" class="btn btn-warning">VER</a>
+                            <a href="{{ route('details.plan.edit', [$plan->url, $detail->id])}}" class="btn btn-info">EDIT</a>
+                            <a href="{{ route('details.plan.show', [$plan->url, $detail->id])}}" class="btn btn-warning">VER</a>
                         </td>
                     </tr> 
                     @endforeach
