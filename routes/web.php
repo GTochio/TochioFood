@@ -1,15 +1,41 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-
-
-
+use App\Http\Controllers\Admin\ACL\ProfileController;
 
 
 Route::prefix('admin')->group(function(){
 
-//Routes Details Plans
+    //Routes permissions
+      
+    Route::any('permissions/search', [App\Http\Controllers\Admin\ACL\PermissionController::class, 'search'])->name('permission.search');
+    Route::get('permissions',[App\Http\Controllers\Admin\ACL\PermissionController::class, 'index'])->name('permission.index');
+    Route::get('permissions/create',[App\Http\Controllers\Admin\ACL\PermissionController::class, 'create'])->name('permission.create');
+    Route::post('permissions/store',[App\Http\Controllers\Admin\ACL\PermissionController::class, 'store'])->name('permission.store');
+    Route::get('permissions/{id}/edit', [App\Http\Controllers\Admin\ACL\PermissionController::class, 'edit'])->name('permission.edit');
+    Route::put('permissions/{id}', [App\Http\Controllers\Admin\ACL\PermissionController::class, 'update'])->name('permission.update');
+    Route::get('permissions/{id}/show',[App\Http\Controllers\Admin\ACL\PermissionController::class, 'show'])->name('permission.show');
+    Route::delete('permissions/{id}', [App\Http\Controllers\Admin\ACL\PermissionController::class, 'destroy'])->name('permission.destroy');
+    
+
+
+
+    //Routes Profiles
+      
+    Route::any('profiles/search', [App\Http\Controllers\Admin\ACL\ProfileController::class, 'search'])->name('profile.search');
+    Route::get('profiles',[App\Http\Controllers\Admin\ACL\ProfileController::class, 'index'])->name('profile.index');
+    Route::get('profiles/create',[App\Http\Controllers\Admin\ACL\ProfileController::class, 'create'])->name('profile.create');
+    Route::post('profiles/store',[App\Http\Controllers\Admin\ACL\ProfileController::class, 'store'])->name('profile.store');
+    Route::get('profiles/{id}/edit', [App\Http\Controllers\Admin\ACL\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profiles/{id}', [App\Http\Controllers\Admin\ACL\ProfileController::class, 'update'])->name('profile.update');
+    Route::get('profiles/{id}/show',[App\Http\Controllers\Admin\ACL\ProfileController::class, 'show'])->name('profile.show');
+    Route::delete('profiles/{id}', [App\Http\Controllers\Admin\ACL\ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+   // };
+
+
+
+    //Routes Details Plans
 
     Route::post('plans/{url}/details',[App\Http\Controllers\Admin\DetailPlanController::class, 'store'])->name('details.plan.store');
     Route::get('plans/{url}/details/create',[App\Http\Controllers\Admin\DetailPlanController::class, 'create'])->name('details.plan.create');
