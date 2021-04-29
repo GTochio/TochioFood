@@ -132,7 +132,7 @@ class PermissionController extends Controller
                                 })
                                 ->paginate();
     
-            return view('admin.pages.permission.index', compact('permissions', 'filters')
+            return view('admin.pages.permissions.index', compact('permissions', 'filters')
             
             );
        

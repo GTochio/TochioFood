@@ -1,35 +1,29 @@
 @extends('adminlte::page')
 
-@section('title', 'Permissões')
+@section('title', "Permissoes do Perfil {$profile->name}")
 
 @section('content_header')
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Dashboard</a></li>
-        <li class="breadcrumb-item active"><a href="{{route('permission.index')}}" class="active">Perfis</a></li>
+        <li class="breadcrumb-item active"><a href="{{route('profile.index')}}" class="active">Permissoes</a></li>
         
     </ol>
 
-    <h1>Permissões <a href="{{route('permission.create')}}"class="btn btn-dark"><i class="fas fa-plus-square"></i> Adicionar</a></h1>
+    <h1>Permissoes do Perfil {{  $profile->name  }} 
+        <a href="{{route('profile.permissions.available', $profile->id)}}"class="btn btn-dark"><i class="fas fa-plus-square"></i> Adicionar Nova Permissao</a>
+    </h1>
 {{-- // --}}
 @stop
 
 @section('content')
     <div class="card">
-        <div class="card-header">
-            <form action="{{route('permission.search')}}" method="POST" class="form form-inline">
-                @csrf
-                <input type="text" name="filter" placeholder="Filtro" class="form-control" value="{{$filters['filter'] ?? ''}}">
-                <button type="submit" class="btn btn-dark">Filtrar</button>
-            </form>
-            
-        </div>
         <div class="card-body">
             <table class="table table-condensed">
                 <thead>
                     <tr>
                         <th>Nome</th>
-                         <th width="250">Acoes</th>
+                         <th width="50">Acoes</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,9 +35,10 @@
             
                         <td style="width=10px;">
 
-                            <a href="{{ route('permission.edit', $permission->id)}}" class="btn btn-info">EDIT</a>
-                            <a href="{{ route('permission.show', $permission->id)}}" class="btn btn-warning">VER</a>
-                            <a href="{{ route('permissions.profiles', $permission->id)}}" class="btn btn-warning"><i class="fas fa-address-book"></i></a>
+                            <a href="{{ route('profile.permissions.detach', [$profile->id, $permission->id])  }}" class="btn btn-danger">DESVINCULAR</a>
+                            {{-- <a href="{{ route('permission.show', $permission->id)}}" class="btn btn-warning">VER</a>
+                            <a href="{{ route('permission.permissions', $permission->id)}}" class="btn btn-warning"><i class="fas fas-lock"></i></a> --}}
+                            
                             {{-- <a href="{{ route('details.permission.index', $permission->url)}}" class="btn btn-primary">DETALHES</a>
                             
                             --}}

@@ -6,6 +6,23 @@ use App\Http\Controllers\Admin\ACL\ProfileController;
 
 Route::prefix('admin')->group(function(){
 
+    //
+
+
+    
+    //Routes Permission X Profile
+    Route::post('profiles/{id}/permissions/store',[App\Http\Controllers\Admin\ACL\PermissionProfileController::class, 'attachPermissionsProfile'])->name('profile.permissions.attach');
+    Route::any('profiles/{id}/permissions/create',[App\Http\Controllers\Admin\ACL\PermissionProfileController::class, 'permissionsAvailable'])->name('profile.permissions.available');
+    Route::get('profiles/{id}/permissions',[App\Http\Controllers\Admin\ACL\PermissionProfileController::class, 'permissions'])->name('profile.permissions');
+    Route::get('profiles/{id}/permissions/{idPermission}/detach',[App\Http\Controllers\Admin\ACL\PermissionProfileController::class, 'detachPermissionsProfile'])->name('profile.permissions.detach');
+    Route::get('permissions/{id}/profiles',[App\Http\Controllers\Admin\ACL\PermissionProfileController::class, 'profiles'])->name('permissions.profiles');
+    
+    
+
+
+
+
+
     //Routes permissions
       
     Route::any('permissions/search', [App\Http\Controllers\Admin\ACL\PermissionController::class, 'search'])->name('permission.search');

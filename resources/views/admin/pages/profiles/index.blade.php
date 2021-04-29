@@ -43,11 +43,8 @@
 
                             <a href="{{ route('profile.edit', $profile->id)}}" class="btn btn-info">EDIT</a>
                             <a href="{{ route('profile.show', $profile->id)}}" class="btn btn-warning">VER</a>
-                            
-                            {{-- <a href="{{ route('details.profile.index', $profile->url)}}" class="btn btn-primary">DETALHES</a>
-                            
-                            --}}
-                            
+                            <a href="{{ route('profile.permissions', $profile->id)}}" class="btn btn-warning"><i class="fas fa-lock"></i></a>
+                                                        
                         </td>
                     </tr> 
                     @endforeach
