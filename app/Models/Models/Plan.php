@@ -14,7 +14,11 @@ class Plan extends Model
  {
      return $this->hasMany(DetailPlans::class);
  }
-    
+ 
+ public function profiles()
+ {
+     return $this->belongsToMany(Profile::class);
+ }
 
     public function search($filter = null)
     {
@@ -27,4 +31,21 @@ class Plan extends Model
 
                    
     }
+    public function profilesAvailable($filter = null)
+    {
+        $profiles = Profile::whereNotIn('profiles.id',function($query){
+            $query->select('plan_profile.profile_id');
+            $query->from('plan_profile');
+            $query->whereRaw("plan_profile.plan_id={$this->id}");
+        })
+        ->where(function($queryfilter) use ($filter){
+            if($filter)
+                $queryfilter->where('profiles.name', 'LIKE', "%($filter)%");
+            
+        })
+        ->paginate();
+
+        return $profiles;
+    }
+    
 }

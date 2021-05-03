@@ -4,9 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ACL\ProfileController;
 
 
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')
+        ->namespace('Admin')
+        ->middleware('auth')
+        ->group(function(){
 
     //
+    //Routes Plan X Profile
+    
+    Route::get('plans/{id}/profile/{idProfile}/detach',[App\Http\Controllers\Admin\ACL\PlanProfileController::class, 'detachPlanProfile'])->name('plans.profile.detach');
+    Route::post('plans/{id}/profiles/store',[App\Http\Controllers\Admin\ACL\PlanProfileController::class, 'attachprofilesProfile'])->name('plans.profiles.attach');
+    Route::any('plans/{id}/profiles/create',[App\Http\Controllers\Admin\ACL\PlanProfileController::class, 'profilesAvailable'])->name('plans.profiles.available');
+    Route::get('plans/{id}/profiles',[App\Http\Controllers\Admin\ACL\PlanProfileController::class, 'profiles'])->name('plans.profiles');
+    Route::get('profiles/{id}/plans',[App\Http\Controllers\Admin\ACL\PlanProfileController::class, 'plans'])->name('profiles.plans');
 
 
     
@@ -77,6 +87,10 @@ Route::prefix('admin')->group(function(){
 
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('/',[App\Http\Controllers\Site\SiteController::class, 'index']);
+
+
+// Rotas de Autenticação 
+
+   // Auth::routes();
+
